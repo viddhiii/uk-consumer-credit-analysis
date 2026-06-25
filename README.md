@@ -39,7 +39,7 @@ like in the data?**
 
 ## Dashboard
 
-![Power BI Dashboard](dashboard/dashboard.png)
+![Power BI Dashboard](dashboard.png)
 
 The Power BI dashboard connects **live to the PostgreSQL database** and includes:
 - A **KPI card** showing peak consumer debt (£253bn)
