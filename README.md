@@ -1,7 +1,7 @@
-# UK Consumer Credit & Debt Trends Analysis (2015–2026)
+# UK Consumer Credit & Debt Trends Analysis (2015-2026)
 
 An end-to-end data analysis project examining how UK consumer borrowing has
-evolved over the last decade — through the pre-pandemic boom, the Covid
+evolved over the last decade, through the pre-pandemic boom, the Covid
 lockdown dip, and the cost-of-living crisis. Built with **PostgreSQL** for the
 analysis and **Power BI** for the dashboard, using real data from the
 **Bank of England**.
@@ -11,7 +11,7 @@ analysis and **Power BI** for the dashboard, using real data from the
 ## Why this project
 
 Consumer borrowing in the UK has changed dramatically since 2015, and the rise
-of **Buy Now, Pay Later (BNPL)** has put consumer credit back in the headlines —
+of **Buy Now, Pay Later (BNPL)** has put consumer credit back in the headlines
 with the FCA bringing BNPL under formal regulation. This project steps back from
 the BNPL headline to ask a broader question: **how has total UK consumer debt
 actually moved over the past decade, and what do the major economic shocks look
@@ -21,9 +21,9 @@ like in the data?**
 
 ## Key findings
 
-- **UK consumer credit grew from ~£171bn (2015) to ~£253bn (2026)** — an increase
+- **UK consumer credit grew from ~£171bn (2015) to ~£253bn (2026)** - an increase
   of roughly **£82 billion (+48%)**.
-- **2021 saw consumer debt *fall* by 6.08%** — the only year of decline in the
+- **2021 saw consumer debt *fall* by 6.08%** - the only year of decline in the
   dataset. During Covid lockdowns, households couldn't spend on travel, dining
   and retail, so many paid down credit instead.
 - **Borrowing rebounded sharply from 2022 onwards** (+5.99% by 2023) as the
@@ -61,9 +61,9 @@ The Power BI dashboard connects **live to the PostgreSQL database** and includes
 
 ## Data source
 
-- **Bank of England Interactive Database** — series **LPMBI2O**: total consumer
+- **Bank of England Interactive Database** - series **LPMBI2O**: total consumer
   credit (excluding student loans), seasonally adjusted, monthly, £ millions.
-- Period: January 2015 – April 2026 (136 monthly records).
+- Period: January 2015 - April 2026 (136 monthly records).
 
 ---
 
