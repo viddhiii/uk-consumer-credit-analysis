@@ -94,47 +94,50 @@ WHERE record_date >= '2022-01-01'
 ORDER BY record_date;
 
 
+
 -- ------------------------------------------------------------
--- 7. CATEGORISING MONTHS INTO ECONOMIC ERAS (CASE)
+-- 7. CATEGORISING MONTHS INTO ECONOMIC PERIODS
 -- ------------------------------------------------------------
 
--- Label each month by economic period
 SELECT
     record_date,
     consumer_credit_gbp_m,
     CASE
-    WHEN record_date < '2020-03-01'
-        THEN 'Pre-pandemic'
-    WHEN record_date < '2022-01-01'
-        THEN 'Pandemic period'
-    ELSE '2022 onwards'
-END AS economic_period
+        WHEN record_date < '2020-03-01'
+            THEN 'Pre-pandemic'
+        WHEN record_date < '2022-01-01'
+            THEN 'Pandemic period'
+        ELSE '2022 onwards'
+    END AS economic_period
+FROM consumer_credit
 ORDER BY record_date;
 
 
 -- ------------------------------------------------------------
--- 8. AVERAGE DEBT BY ECONOMIC ERA (CASE + GROUP BY)
+-- 8. AVERAGE CREDIT BY ECONOMIC PERIOD
 -- ------------------------------------------------------------
 
--- Compare average debt across the three economic periods
--- Finding: Pre-Covid GBP 200,972m (62 months)
---          Covid period GBP 204,830m (15 months)
---          Cost-of-living era GBP 221,190m (59 months)
+WITH classified_credit AS (
+    SELECT
+        record_date,
+        consumer_credit_gbp_m,
+        CASE
+            WHEN record_date < '2020-03-01'
+                THEN 'Pre-pandemic'
+            WHEN record_date < '2022-01-01'
+                THEN 'Pandemic period'
+            ELSE '2022 onwards'
+        END AS economic_period
+    FROM consumer_credit
+)
+
 SELECT
- CASE
-    WHEN record_date < '2020-03-01'
-        THEN 'Pre-pandemic'
-    WHEN record_date < '2022-01-01'
-        THEN 'Pandemic period'
-    ELSE '2022 onwards'
-END AS economic_period
-    ROUND(AVG(consumer_credit_gbp_m)) AS avg_debt,
+    economic_period,
+    ROUND(
+        AVG(consumer_credit_gbp_m) / 1000, 1
+    ) AS avg_credit_gbp_bn,
     COUNT(*) AS months_count
-FROM consumer_credit
-GROUP BY
-    CASE
-        WHEN record_date < '2020-03-01' THEN 'Pre-Covid'
-        WHEN record_date < '2021-06-01' THEN 'Covid period'
-        ELSE 'Cost-of-living era'
-    END
-ORDER BY avg_debt;
+FROM classified_credit
+GROUP BY economic_period
+ORDER BY MIN(record_date);
+
