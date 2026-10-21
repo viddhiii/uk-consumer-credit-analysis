@@ -21,19 +21,20 @@ like in the data?**
 
 ## Key findings
 
-- **UK consumer credit grew from ~£171bn (2015) to ~£253bn (2026)** - an increase
-  of roughly **£82 billion (+48%)**.
-- **2021 saw consumer debt *fall* by 6.08%** - the only year of decline in the
-  dataset. During Covid lockdowns, households couldn't spend on travel, dining
-  and retail, so many paid down credit instead.
-- **Borrowing rebounded sharply from 2022 onwards** (+5.99% by 2023) as the
-  cost-of-living crisis pushed households back towards credit.
-- Average debt by economic era:
-  | Economic period | Avg debt (£m) | Months |
-  |---|---|---|
-  | Pre-Covid | 200,972 | 62 |
-  | Covid period | 204,830 | 15 |
-  | Cost-of-living era | 221,190 | 59 |
+- UK outstanding consumer credit (excluding student loans) increased from approximately £171.5 billion in January 2015 to £253.5 billion in April 2026, a nominal increase of £82.0 billion (47.8%).
+- Based on annual average outstanding credit, 2020 recorded a 5.21% decline compared with 2019, followed by a further 6.08% decline in 2021.
+- Annual average outstanding credit increased by 2.62% in 2022 and 5.99% in 2023, showing a recovery in balances after the pandemic period.
+- The figures represent outstanding credit balances, not new borrowing. They are not adjusted for inflation and do not establish the causes of changes in borrowing.
+
+### Average outstanding consumer credit by economic period
+
+| Economic period | Dates | Average credit (£bn) | Months |
+| --- | --- | ---: | ---: |
+| Pre-pandemic | Jan 2015 - Feb 2020 | 201.0 | 62 |
+| Pandemic period | Mar 2020 - Dec 2021 | 202.7 | 22 |
+| 2022 onwards | Jan 2022 - Apr 2026 | 224.3 | 52 |
+
+Source: Bank of England, series LPMBI2O. Monthly, seasonally adjusted outstanding consumer credit excluding student loans.
 
 ---
 
