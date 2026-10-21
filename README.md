@@ -42,10 +42,15 @@ Source: Bank of England, series LPMBI2O. Monthly, seasonally adjusted outstandin
 
 ![Power BI Dashboard](dashboard.png)
 
-The Power BI dashboard connects **live to the PostgreSQL database** and includes:
-- A **KPI card** showing peak consumer debt (£253bn)
-- A **line chart** tracing the full 2015–2026 trend
-- A **bar chart** comparing average debt across the three economic eras
+The Power BI dashboard visualises monthly UK outstanding consumer credit between January 2015 and April 2026.
+
+It includes:
+
+- A KPI card showing peak outstanding consumer credit of £253.5bn.
+- A line chart illustrating monthly credit trends, including the pandemic decline and subsequent recovery.
+- A bar chart comparing average outstanding consumer credit across three economic periods.
+
+The dashboard uses DAX measures to calculate and present credit balances in £ billions.
 
 ---
 
@@ -72,26 +77,24 @@ The Power BI dashboard connects **live to the PostgreSQL database** and includes
 
 ```
 uk-consumer-credit-analysis/
-├── README.md                              This file
-├── sql/
-│   └── analysis_queries.sql               All SQL analysis queries
-├── data/
-│   └── consumer_credit_clean.csv          Cleaned dataset
-└── dashboard/
-    ├── dashboard.png                      Dashboard screenshot
-    └── UK_Consumer_Credit_Dashboard.pbix  Power BI file
+├── README.md
+├── analysis_queries.sql
+├── consumer_credit_clean.csv
+├── dashboard.png
+└── UK_Consumer_Credit_Dashboard.pbix
 ```
 
 ---
 
 ## How to reproduce
 
-1. Create a PostgreSQL database and run the `CREATE TABLE` statement in
-   `sql/analysis_queries.sql`.
-2. Import `data/consumer_credit_clean.csv` into the `consumer_credit` table.
-3. Run the analysis queries to explore the trends.
-4. Open the `.pbix` file in Power BI Desktop and point the connection at your
-   database to view the dashboard.
+1. Clone or download this repository.
+2. Create a PostgreSQL database.
+3. Run the table creation statement in `analysis_queries.sql`.
+4. Import `consumer_credit_clean.csv` into the `consumer_credit` table.
+5. Run the remaining SQL queries to explore the trends and economic-period comparisons.
+6. Open `UK_Consumer_Credit_Dashboard.pbix` in Power BI Desktop.
+7. Configure the PostgreSQL connection to point to your local database and refresh the data.
 
 ---
 
