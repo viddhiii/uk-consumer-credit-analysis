@@ -58,26 +58,40 @@ GROUP BY EXTRACT(YEAR FROM record_date)
 ORDER BY year;
 
 
+
 -- ------------------------------------------------------------
--- 5. YEAR-OVER-YEAR % GROWTH (WINDOW FUNCTION)
+-- 5. YEAR-OVER-YEAR % GROWTH (FULL YEARS ONLY)
 -- ------------------------------------------------------------
 
--- Uses LAG() to compare each year's average against the previous year
--- KEY FINDING: 2021 = -6.08% (Covid lockdown debt drop)
---              2022 = +2.62%, 2023 = +5.99% (cost-of-living surge)
+-- Calculate annual averages using complete calendar years.
+-- Exclude 2026 because only Jan-Apr data is available.
+
+WITH annual_averages AS (
+    SELECT
+        EXTRACT(YEAR FROM record_date)::INT AS year,
+        AVG(consumer_credit_gbp_m) AS avg_credit_gbp_m
+    FROM consumer_credit
+    GROUP BY EXTRACT(YEAR FROM record_date)
+    HAVING COUNT(*) = 12
+),
+annual_growth AS (
+    SELECT
+        year,
+        avg_credit_gbp_m,
+        LAG(avg_credit_gbp_m) OVER (
+            ORDER BY year
+        ) AS previous_year_avg
+    FROM annual_averages
+)
 SELECT
-    EXTRACT(YEAR FROM record_date) AS year,
-    ROUND(AVG(consumer_credit_gbp_m)) AS avg_debt,
+    year,
+    ROUND(avg_credit_gbp_m, 0) AS avg_credit_gbp_m,
     ROUND(
-        (AVG(consumer_credit_gbp_m)
-            - LAG(AVG(consumer_credit_gbp_m))
-                OVER (ORDER BY EXTRACT(YEAR FROM record_date)))
-        / LAG(AVG(consumer_credit_gbp_m))
-                OVER (ORDER BY EXTRACT(YEAR FROM record_date)) * 100,
+        (avg_credit_gbp_m - previous_year_avg)
+        / NULLIF(previous_year_avg, 0) * 100,
         2
     ) AS yoy_growth_pct
-FROM consumer_credit
-GROUP BY EXTRACT(YEAR FROM record_date)
+FROM annual_growth
 ORDER BY year;
 
 
