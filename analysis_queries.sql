@@ -103,11 +103,12 @@ SELECT
     record_date,
     consumer_credit_gbp_m,
     CASE
-        WHEN record_date < '2020-03-01' THEN 'Pre-Covid'
-        WHEN record_date < '2021-06-01' THEN 'Covid period'
-        ELSE 'Cost-of-living era'
-    END AS economic_period
-FROM consumer_credit
+    WHEN record_date < '2020-03-01'
+        THEN 'Pre-pandemic'
+    WHEN record_date < '2022-01-01'
+        THEN 'Pandemic period'
+    ELSE '2022 onwards'
+END AS economic_period
 ORDER BY record_date;
 
 
@@ -120,11 +121,13 @@ ORDER BY record_date;
 --          Covid period GBP 204,830m (15 months)
 --          Cost-of-living era GBP 221,190m (59 months)
 SELECT
-    CASE
-        WHEN record_date < '2020-03-01' THEN 'Pre-Covid'
-        WHEN record_date < '2021-06-01' THEN 'Covid period'
-        ELSE 'Cost-of-living era'
-    END AS economic_period,
+ CASE
+    WHEN record_date < '2020-03-01'
+        THEN 'Pre-pandemic'
+    WHEN record_date < '2022-01-01'
+        THEN 'Pandemic period'
+    ELSE '2022 onwards'
+END AS economic_period
     ROUND(AVG(consumer_credit_gbp_m)) AS avg_debt,
     COUNT(*) AS months_count
 FROM consumer_credit
